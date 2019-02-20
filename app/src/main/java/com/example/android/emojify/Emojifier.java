@@ -2,6 +2,7 @@ package com.example.android.emojify;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.util.SparseArray;
@@ -34,8 +35,45 @@ class Emojifier {
             Log.d(LOG_TAG, "There are " + faces.size() + " in this image");
             for (int i = 0; i < faces.size(); ++i) {
                 Face face = faces.valueAt(i);
-                // Log the classification probabilities for each face.
-                whichEmoji(face);
+
+                Bitmap emojiBitmap;
+                switch (whichEmoji(face)) {
+                    case SMILE:
+                        emojiBitmap = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.smile);
+                        break;
+                    case FROWN:
+                        emojiBitmap = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.frown);
+                        break;
+                    case LEFT_WINK:
+                        emojiBitmap = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.leftwink);
+                        break;
+                    case RIGHT_WINK:
+                        emojiBitmap = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.rightwink);
+                        break;
+                    case LEFT_WINK_FROWN:
+                        emojiBitmap = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.leftwinkfrown);
+                        break;
+                    case RIGHT_WINK_FROWN:
+                        emojiBitmap = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.rightwinkfrown);
+                        break;
+                    case CLOSED_EYE_SMILE:
+                        emojiBitmap = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.closed_smile);
+                        break;
+                    case CLOSED_EYE_FROWN:
+                        emojiBitmap = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.closed_frown);
+                        break;
+                    default:
+                        emojiBitmap = null;
+                        Toast.makeText(context, R.string.no_emoji, Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             Toast.makeText(context, "No faces detected in this image", Toast.LENGTH_LONG).show();

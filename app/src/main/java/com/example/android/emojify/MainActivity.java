@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Bind the views
         mImageView = findViewById(R.id.image_view);
         mEmojifyButton = findViewById(R.id.emojify_button);
         mShareFab = findViewById(R.id.share_button);
